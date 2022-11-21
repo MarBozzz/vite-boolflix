@@ -1,6 +1,6 @@
 <script>
 
-import { store } from '../data/store';
+import {store} from '../data/store';
 
 import AppCard from './AppCard.vue';
 
@@ -20,8 +20,13 @@ export default {
 
 <template>
   <main>
-    MAIN
+    <div class="container">
+      MAIN
+      <ul>
+        <li v-for="movie in store.movieList" :key="movie.id">{{movie.title+' '+movie.original_title+' '+movie.original_language+' '+movie.vote_average}}</li>
+      </ul>
     <AppCard />
+    </div>
   </main>
 </template>
 
