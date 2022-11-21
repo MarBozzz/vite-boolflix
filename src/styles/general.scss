@@ -1,0 +1,21 @@
+@use './partials/vars' as *;
+@use './partials/mixins' as *;
+
+//npm i bootstrap
+@import 'node_modules/bootstrap/scss/bootstrap';
+
+//npm i @fortawesome/fontawesome-free
+@import 'node_modules/@fortawesome/fontawesome-free/css/all.min.css';
+
+// npm i "@fontsource/roboto" 
+@import 'node_modules/@fontsource/roboto/index.css';
+
+//npm install flag-icons
+@import "/node_modules/flag-icons/css/flag-icons.min.css";
+//<span class="fi fi-gr"></span> <span class="fi fi-gr fis"></span>
+
+body {
+  font-family: $main-font;
+  background-color: $main-color;
+  color: white;
+}
