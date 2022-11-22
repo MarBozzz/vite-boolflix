@@ -6,7 +6,6 @@ import { store } from './data/store'
 
 import AppHeader from './components/AppHeader.vue';
 import AppMain from './components/AppMain.vue';
-import Appcard from './components/AppCard.vue'
 
 export default {
   name : 'App',
@@ -18,37 +17,37 @@ export default {
   components : {
     AppHeader,
     AppMain,
-    Appcard
   },
   methods : {
-    getMovieData(){
-      //https://api.themoviedb.org/3/search/movie?api_key=d18b4066572abd6df624614e95914560&query=pulp+fiction
-      //https://api.themoviedb.org/3/search/
-      //movie
-      //?api_key=d18b4066572abd6df624614e95914560
-      //&query=pulp+fiction
-      //const apiKey = '?api_key=d18b4066572abd6df624614e95914560';
-      //const query = '&query=pulp+fiction';
-
-      axios.get(store.apiUrl+'movie'+store.apiKey+store.query+store.titleToSearch)
-      /*axios.get(store.apiUrl+'movie', {
-        params:{
-          apikey : store.apiKey,
-          querystring : store.query,
-          //title : store.titleToSearch
+    getMovieData(type, isPopular = false){
+      let apiUrl;
+      if(isPopular) apiUrl = 'https://api.themoviedb.org/3/movie/popular/'
+      else apiUrl = store.apiUrl + type
+      axios.get(apiUrl, {
+        params:
+          store.apiParams
         }
-      })*/
+      )
       .then( response => {
-        store.movieList = response.data.results;
-        console.log(store.movieList);
+        store[type] = response.data.results;
       })
       .catch( error => {
         console.log(error);
       })
+    },
+    startSearch(){
+      store.movie = [];
+      store.tv = [];
+      if(store.type === ''){
+        this.getMovieData('movie');
+        this.getMovieData('tv');
+      } else {
+        this.getMovieData(store.type)
+      } 
     }
   },
   mounted() {
-    this.getMovieData();
+    this.getMovieData('movie', true)
   }
 }
 </script>
@@ -56,8 +55,9 @@ export default {
 
 <template>
 
-  <AppHeader @startSearch="getMovieData()" />
-  <AppMain />
+  <AppHeader @search="startSearch" />
+  <AppMain v-if="store.movie.length > 0" title="Movie" type="movie" />
+  <AppMain v-if="store.tv.length > 0" title="Serie" type="tv" />
 
 </template>
 

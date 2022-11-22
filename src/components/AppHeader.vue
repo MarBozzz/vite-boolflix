@@ -19,16 +19,16 @@ export default {
       <div class="row">
 
         <div class="col-auto">
-          <input v-model.trim="store.titleToSearch" type="text" class="form-control" placeholder="Cerca Titolo">
+          <input v-model.trim="store.apiParams.query" @keyup.enter="$emit('search')" type="text" class="form-control" placeholder="Cerca Titolo">
         </div>
         <div class="col-auto">
-          <button @click="$emit('startSearch')" class="btn btn-warning">Cerca</button>
+          <button @click="$emit('search')" class="btn btn-warning">Cerca</button>
         </div>
         <div class="col-auto">
-          <select class="form-select">
-            <option value="" selected>Secect</option>
-            <option value="movies">Movies</option>
-            <option value="series">Series</option>
+          <select @change="$emit('search')" v-model="store.type"  class="form-select">
+            <option value="" >Select</option>
+            <option value="movie" selected>Movies</option>
+            <option value="tv">Series</option>
           </select>
       </div>
       
