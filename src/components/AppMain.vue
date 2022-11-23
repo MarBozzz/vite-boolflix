@@ -29,12 +29,12 @@ export default {
       <source src="../assets/audio/Netflix-Intro-Sound-Effect.mp3" type="audio/mpeg">
     </audio>
 
-    <h1 class="container">
-      {{title}}
-    </h1>
+    <div class="container d-flex justify-content-center py-3">
+      <h1>{{title}}</h1>
+    </div>
 
     <div class="container">
-      <div class="row py-5 d-flex flex-wrap">
+      <div class="row py-3 d-flex flex-wrap">
 
         <AppCard :card="card" v-for="card in store[type]" :key="card.id"/>
 

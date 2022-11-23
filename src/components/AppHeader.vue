@@ -48,7 +48,6 @@ export default {
 
 header {
   height: 80px;
-  background-color: black;
   background-image:
     linear-gradient(
       darken($main-color,0%),
@@ -57,10 +56,12 @@ header {
       darken($main-color,60%),
       darken($main-color,80%),
       $main-color 100%
-      
       );
   .logo {
     width: 150px;
+  }
+  .logo:hover {
+    cursor: pointer;
   }
 }
 
