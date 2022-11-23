@@ -25,6 +25,10 @@ export default {
 <template>
   <main>
 
+    <audio controls autoplay class="d-none">
+      <source src="../assets/audio/Netflix-Intro-Sound-Effect.mp3" type="audio/mpeg">
+    </audio>
+
     <h1 class="container">
       {{title}}
     </h1>
