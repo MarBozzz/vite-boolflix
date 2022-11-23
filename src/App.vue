@@ -20,6 +20,7 @@ export default {
   },
   methods : {
     getMovieData(type, isPopular = false){
+      store.isLoaded = false;
       let apiUrl;
       if(isPopular) apiUrl = 'https://api.themoviedb.org/3/movie/popular/'
       else apiUrl = store.apiUrl + type
@@ -30,6 +31,7 @@ export default {
       )
       .then( response => {
         store[type] = response.data.results;
+        store.isLoaded = true
       })
       .catch( error => {
         console.log(error);
@@ -55,7 +57,7 @@ export default {
 
 <template>
 
-  <AppHeader @search="startSearch" />
+  <AppHeader @search="startSearch" @goToPopular="this.getMovieData('movie', true)" />
   <AppMain v-if="store.movie.length > 0" title="Movies" type="movie" />
   <AppMain v-if="store.tv.length > 0" title="Series" type="tv" />
 

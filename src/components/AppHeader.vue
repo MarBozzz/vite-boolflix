@@ -18,7 +18,7 @@ export default {
     <div class="container h-100 d-flex justify-content-between align-items-center">
 
       <div class="logo h-100 d-flex align-items-center">
-        <img src="../assets/img/logo-boolflix.png" alt="Logo Boolfix">
+        <img @click="$emit('goToPopular')" src="../assets/img/logo-boolflix.png" alt="Logo Boolfix">
       </div>
 
       <div class="input-area row">

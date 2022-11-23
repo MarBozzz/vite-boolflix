@@ -12,4 +12,5 @@ export const store = reactive({
     language : 'it-IT'
   },
   titleToSearch: '',
+  isLoaded : false,
 });

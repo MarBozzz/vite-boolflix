@@ -73,9 +73,12 @@ export default {
               <li v-for="star in getStarsMissing(card.vote_average)" :key="star"><i class="fa-regular fa-star"></i></li>
             </ul>
           </div>
-          <div class="overview pb-3">
+          <div v-if="card.overview !==''" class="overview pb-3">
             <span>Overview:&ensp;</span>
             <span>{{card.overview}}</span>
+          </div>
+          <div v-else>
+            <span>No overview available on this title</span>
           </div>
         </div>
       </div>
